@@ -34,7 +34,7 @@ client.on('messageCreate', async (message) => {
         });
     }
 
-    if (command === 'playlist' || 'pl') {
+    if (command === 'playlist') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
         let song = await queue.playlist(args.join(' ')).catch(_ => {
