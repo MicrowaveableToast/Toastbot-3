@@ -19,12 +19,8 @@
   "dependencies": {
     "@discordjs/opus": "^0.8.0",
     "@discordjs/voice": "^0.11.0",
-    "@distube/spotify": "^1.3.2",
-    "@distube/ytdl-core": "^4.11.3",
     "@jadestudios/discord-music-player": "^8.3.1-az18",
-    "discord-music-player": "^9.0.2",
     "discord.js": "^13.9.2",
-    "distube": "^4.0.3",
     "ffmpeg": "^0.0.4",
     "lavalink": "^2.13.0",
     "libsodium-wrappers": "^0.7.10",
