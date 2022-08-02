@@ -1,0 +1,3 @@
+C:\Users\super\source\repos\Toastbot 3\Toastbot 3\obj\Debug\Toastbot 3.njsproj.AssemblyReference.cache
+C:\Users\super\source\repos\Toastbot 3\Toastbot 3\obj\Debug\Toastbot 3.njsproj.CoreCompileInputs.cache
+C:\Users\super\source\repos\Toastbot 3\Toastbot 3\bin\Microsoft.NodejsTools.WebRole.dll
