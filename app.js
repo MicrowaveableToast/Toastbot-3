@@ -25,6 +25,7 @@ client.on('messageCreate', async (message) => {
     const command = args.shift().toLowerCase();
     if (message.author.bot) return;
     if (!message.content.startsWith(prefix)) return;
+    let guildQueue = client.player.getQueue(message.guild.id);
     if (command === 'play' || 'p') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
