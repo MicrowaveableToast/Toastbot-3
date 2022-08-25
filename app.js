@@ -7,7 +7,7 @@ const settings = {
     prefix: 't/',
     
 };
-
+const prefix = "t/";
 const { Player } = require("@jadestudios/discord-music-player");
 const player = new Player(client, {
     leaveOnEmpty: false, // This options are optional.
