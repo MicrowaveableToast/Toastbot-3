@@ -27,6 +27,7 @@ client.on('messageCreate', async (message) => {
     if (!message.content.startsWith prefix) return;
     if (command === 'bugreport' || 'bug') {
         message.channel.send( '@Toast#0215 @Toast#0215 @Toast#0215 @Toast#0215 @Toast#0215 @Toast#0215 @Toast#0215 @Toast#0215');
+    }
     if (command === 'play' || 'p') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
