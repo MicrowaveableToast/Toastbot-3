@@ -24,7 +24,7 @@ client.on('messageCreate', async (message) => {
     const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     if (message.author.bot) return;
-    if (!message.content.startsWith prefix) return;
+    if (!message.content.startsWith(prefix)) return;
     if (command === 'bugreport' || 'bug') {
         message.channel.send( '@Toast#0215 @Toast#0215 @Toast#0215 @Toast#0215 @Toast#0215 @Toast#0215 @Toast#0215 @Toast#0215');
     }
