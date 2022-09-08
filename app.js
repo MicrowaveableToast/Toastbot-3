@@ -23,7 +23,7 @@ const { RepeatMode } = require('@jadestudios/discord-music-player');
 client.on('messageCreate', async (message) => {
     const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
     const command = args.shift();
-    let guildQueue = client.player.getQueue(message.guild.id);
+    
     client.play
         // Emitted when channel was empty.
         .on('channelEmpty', (queue) => {
@@ -76,7 +76,7 @@ client.on('messageCreate', async (message) => {
             message.channel.send(`Error: ${error} in ${queue.guild.name}`);
         });
 
-    
+    let guildQueue = client.player.getQueue(message.guild.id);
     if (command === 'play' || 'p') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
