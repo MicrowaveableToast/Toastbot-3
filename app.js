@@ -24,7 +24,7 @@ client.on('messageCreate', async (message) => {
     const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
     const command = args.shift();
     
-    client.play
+    client.player
         // Emitted when channel was empty.
         .on('channelEmpty', (queue) => {
             console.log(`Everyone left the Voice Channel, queue ended.`),
