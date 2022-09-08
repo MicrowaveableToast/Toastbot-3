@@ -7,7 +7,7 @@ const settings = {
     prefix: 't/',
     
 };
-
+const prefix = "t/";
 const { Player } = require("@jadestudios/discord-music-player");
 const player = new Player(client, {
     leaveOnEmpty: false, // This options are optional.
@@ -22,13 +22,11 @@ const { RepeatMode } = require('@jadestudios/discord-music-player');
 
 client.on('messageCreate', async (message) => {
     const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
-    const command = args.shift();
-    
+    const command = args.shift().toLowerCase();
     if (message.author.bot) return;
-    if (!message.content.startsWith(settings.prefix)) return;
-    
+    if (!message.content.startsWith(prefix)) return;
     let guildQueue = client.player.getQueue(message.guild.id);
-    
+    if (args === null) return;
     if (command === 'play' || 'p') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
@@ -38,7 +36,7 @@ client.on('messageCreate', async (message) => {
         });
     }
 
-    if (command === 'playlist' || 'pl') {
+    if (command === 'playlist') {
         let queue = client.player.createQueue(message.guild.id);
         await queue.join(message.member.voice.channel);
         let song = await queue.playlist(args.join(' ')).catch(_ => {
@@ -92,7 +90,7 @@ client.on('messageCreate', async (message) => {
     }
 
     if (command === 'nowplaying || np') {
-        message.channel.send(`Now playing: ${guildQueue.nowPlaying}`);
+       message.channel.send(`Now playing: ${guildQueue.nowPlaying}`);
     }
 
     if (command === 'pause') {
@@ -111,7 +109,7 @@ client.on('messageCreate', async (message) => {
         const ProgressBar = guildQueue.createProgressBar();
 
         // [======>              ][00:35/2:20]
-        message.channel.send(ProgressBar.prettier);
+       message.channel.send(ProgressBar.prettier);
     }
     if (command === 'help') {
         message.channel.send('play/p: plays song/ adds it to queue, playlist/pl: plays selected playlist, skip: skips current song, stop: stops music and disconnects bot, loop/noloop: loops and unloops current song, queue: shows current queue, loopqueue: toggles if the queue if looped, clearqueue: clears queue, shufflequeue: shuffles queue, volume: changes current volume (1-100), getvolume: shows current volume, nowplaying/np shows what song is currently playing, pause: pauses all music, resume: resumes paused music, remove: removes the selected song from queue (1-99), createprogressbar/pb: shows current songs progress     ')
@@ -119,58 +117,38 @@ client.on('messageCreate', async (message) => {
 
 
     }
-    });
+});
 client.player
-        // Emitted when channel was empty.
-        .on('channelEmpty', (queue) => {
-            console.log(`Everyone left the Voice Channel, queue ended.`)
-               
-        })
-        // Emitted when a song was added to the queue.
-        .on('songAdd', (queue, song) => {
-            console.log(`Song ${song} was added to the queue.`)
-                
-        })
-        // Emitted when a playlist was added to the queue.
-        .on('playlistAdd', (queue, playlist) => {
-            console.log(`Playlist ${playlist} with ${playlist.songs.length} was added to the queue.`)
-               
-        })
-        // Emitted when there was no more music to play.
-        .on('queueDestroyed', (queue) => {
-            console.log(`The queue was destroyed.`)
-                
-        })
-        // Emitted when the queue was destroyed (either by ending or stopping).    
-        .on('queueEnd', (queue) => {
-            
-                console.log(`The queue has ended.`)
-        })
-        // Emitted when a song changed.
-        .on('songChanged', (queue, newSong, oldSong) => {
-            console.log(`${newSong} is now playing.`)
-               
-        })
-        // Emitted when a first song in the queue started playing.
-        .on('songFirst', (queue, song) => {
-            console.log(`Started playing ${song}.`)
-                
-        })
-        // Emitted when someone disconnected the bot from the channel.
-        .on('clientDisconnect', (queue) => {
-            console.log(`I was kicked from the Voice Channel, queue ended.`)
-                
-        })
-        // Emitted when deafenOnJoin is true and the bot was undeafened
-        .on('clientUndeafen', (queue) => {
-            console.log(`I got undefeanded.`)
-             
-        })
-        // Emitted when there was an error in runtime
-        .on('error', (error, queue) => {
-            console.log(`Error: ${error} in ${queue.guild.name}`)
-            
-        });
+    // Emitted when channel was empty.
+    .on('channelEmpty', (queue) =>
+        console.log(`Everyone left the Voice Channel, queue ended.`))
+    // Emitted when a song was added to the queue.
+    .on('songAdd', (queue, song) =>
+        console.log(`Song ${song} was added to the queue.`))
+    // Emitted when a playlist was added to the queue.
+    .on('playlistAdd', (queue, playlist) =>
+        console.log(`Playlist ${playlist} with ${playlist.songs.length} was added to the queue.`))
+    // Emitted when there was no more music to play.
+    .on('queueDestroyed', (queue) =>
+        console.log(`The queue was destroyed.`))
+    // Emitted when the queue was destroyed (either by ending or stopping).    
+    .on('queueEnd', (queue) =>
+        console.log(`The queue has ended.`))
+    // Emitted when a song changed.
+    .on('songChanged', (queue, newSong, oldSong) =>
+        console.log(`${newSong} is now playing.`))
+    // Emitted when a first song in the queue started playing.
+    .on('songFirst', (queue, song) =>
+        console.log(`Started playing ${song}.`))
+    // Emitted when someone disconnected the bot from the channel.
+    .on('clientDisconnect', (queue) =>
+        console.log(`I was kicked from the Voice Channel, queue ended.`))
+    // Emitted when deafenOnJoin is true and the bot was undeafened
+    .on('clientUndeafen', (queue) =>
+        console.log(`I got undefeanded.`))
+    // Emitted when there was an error in runtime
+    .on('error', (error, queue) => {
+        console.log(`Error: ${error} in ${queue.guild.name}`);
+    });
 
 client.login(process.env.TOKEN); 
-
