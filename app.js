@@ -24,6 +24,9 @@ client.on('messageCreate', async (message) => {
     const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
     const command = args.shift();
     let guildQueue = client.player.getQueue(message.guild.id);
+    if (message.author.bot) return;
+    if (!message.content.startsWith(prefix)) return;
+    if (!message.channel.name == 'rythm')
     client.player
         // Emitted when channel was empty.
         .on('channelEmpty', (queue) => {
