@@ -23,11 +23,11 @@ const { RepeatMode } = require('@jadestudios/discord-music-player');
 client.on('messageCreate', async (message) => {
     const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
     const command = args.shift();
-    let guildQueue = client.player.getQueue(message.guild.id);
+    
     if (message.author.bot) return;
     if (!message.content.startsWith(settings.prefix)) return;
-    if (!message.channel.name == 'rythm')
     
+    let guildQueue = client.player.getQueue(message.guild.id);
     
     if (command === 'play' || 'p') {
         let queue = client.player.createQueue(message.guild.id);
