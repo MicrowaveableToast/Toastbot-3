@@ -105,10 +105,8 @@ client.on('messageCreate', async (message) => {
         guildQueue.remove(parseInt(args[0]));
     }
 
-    if (command === 'createprogressbar' || 'pb') {
-        const ProgressBar = guildQueue.createProgressBar();
-
-        // [======>              ][00:35/2:20]
+    if (command === 'pb') {
+       const ProgressBar = guildQueue.createProgressBar()
        message.channel.send(ProgressBar.prettier);
     }
     if (command === 'help') {
